@@ -2,8 +2,32 @@
 <html>
 <head>
     <meta http-equiv="refresh" content="5">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            width: 100vw; /* Full viewport width */
+            background-color: #f9f9f9; /* Optional: background color */
+        }
+        iframe {
+            max-width: 100%; /* Prevents overflow horizontally */
+            max-height: 100%; /* Prevents overflow vertically */
+            width: 960px; /* Default width */
+            height: 569px; /* Default height (aspect ratio preserved) */
+            border: 0; /* Removes border */
+        }
+    </style>
 </head>
 <body>
-    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTPwPLkmIZOmQRIQxDgMJrTAShOXEtpmbCdvnln8fT9ocNNx_EmIPuULYbe-8277gt2s9OE6rMSHpb8/embed?start=false&loop=false&delayms=3000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    <iframe 
+        src="https://docs.google.com/presentation/d/e/2PACX-1vTPwPLkmIZOmQRIQxDgMJrTAShOXEtpmbCdvnln8fT9ocNNx_EmIPuULYbe-8277gt2s9OE6rMSHpb8/embed?start=false&loop=false&delayms=3000" 
+        frameborder="0" 
+        allowfullscreen="true" 
+        mozallowfullscreen="true" 
+        webkitallowfullscreen="true">
+    </iframe>
 </body>
 </html>
