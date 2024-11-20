@@ -51,8 +51,34 @@
             margin-top: 10px;
             cursor: pointer;
         }
+        #countdown {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #fff;
+        }
     </style>
     <script>
+        let countdownTime = 30; // Set countdown for 30 seconds
+
+        // Function to refresh the iframe
+        function refreshIframe() {
+            const iframe = document.getElementById('content-iframe');
+            iframe.src = iframe.src; // Reloads the iframe content
+        }
+
+        // Countdown function to update the timer
+        function updateCountdown() {
+            const countdownElement = document.getElementById('countdown');
+            countdownElement.textContent = `Next refresh in: ${countdownTime}s`;
+
+            if (countdownTime <= 0) {
+                refreshIframe(); // Refresh the iframe when the countdown reaches 0
+                countdownTime = 30; // Reset the countdown to 30 seconds
+            } else {
+                countdownTime--; // Decrease the countdown by 1 second
+            }
+        }
+
         // Password validation function
         function checkPassword() {
             const password = document.getElementById('password-input').value;
@@ -64,6 +90,9 @@
                 // Show iframe and hide password prompt
                 iframe.style.display = 'block';
                 passwordContainer.style.display = 'none';
+
+                // Start the countdown timer
+                setInterval(updateCountdown, 1000); // Update the countdown every second
             } else {
                 alert('Incorrect password!');
             }
@@ -94,5 +123,8 @@
         mozallowfullscreen="true" 
         webkitallowfullscreen="true">
     </iframe>
+
+    <!-- Countdown Timer -->
+    <div id="countdown"></div>
 </body>
 </html>
