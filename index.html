@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="refresh" content="30">
+    <meta http-equiv="refresh" content="5">
     <style>
         body {
             margin: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh; /* Full viewport height */
             width: 100vw; /* Full viewport width */
             background-color: #000000; /* Optional: background color */
+            font-family: Arial, sans-serif; /* Clean font */
         }
         iframe {
             max-width: 100%; /* Prevents overflow horizontally */
@@ -19,7 +21,31 @@
             height: 569px; /* Default height (aspect ratio preserved) */
             border: 0; /* Removes border */
         }
+        .refresh-note {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #555; /* Subtle text color */
+        }
     </style>
+    <script>
+        // Function to get the current time in PST
+        function getPSTTime() {
+            const now = new Date();
+            const utcOffset = now.getTimezoneOffset() * 60000; // Convert minutes to milliseconds
+            const pstOffset = -8 * 60 * 60 * 1000; // PST is UTC-8
+            const pstTime = new Date(now.getTime() + utcOffset + pstOffset);
+            return pstTime.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' });
+        }
+
+        // Update the note with the last refresh time
+        function updateRefreshTime() {
+            const refreshNote = document.getElementById('refresh-time');
+            refreshNote.textContent = `Last refreshed: ${getPSTTime()} PST`;
+        }
+
+        // Run the update function when the page loads
+        window.onload = updateRefreshTime;
+    </script>
 </head>
 <body>
     <iframe 
@@ -29,5 +55,8 @@
         mozallowfullscreen="true" 
         webkitallowfullscreen="true">
     </iframe>
+    <div class="refresh-note" id="refresh-time">
+        <!-- The refresh time will be dynamically updated here -->
+    </div>
 </body>
 </html>
