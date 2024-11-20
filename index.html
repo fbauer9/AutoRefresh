@@ -22,28 +22,70 @@
             text-align: center;
         }
         iframe {
+            display: none; /* Initially hide the iframe */
             max-width: 100%; /* Prevents overflow horizontally */
             max-height: 100%; /* Prevents overflow vertically */
             width: 960px; /* Default width */
             height: 569px; /* Default height (aspect ratio preserved) */
             border: 0; /* Removes border */
         }
+        #password-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            color: #fff;
+        }
+        input[type="password"] {
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            width: 200px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
     </style>
     <script>
-        // Function to refresh the iframe
-        function refreshIframe() {
+        // Password validation function
+        function checkPassword() {
+            const password = document.getElementById('password-input').value;
+            const correctPassword = 'BlueCondorFT3'; // Store the password (not secure)
             const iframe = document.getElementById('content-iframe');
-            iframe.src = iframe.src; // Reloads the iframe content
+            const passwordContainer = document.getElementById('password-container');
+            
+            if (password === correctPassword) {
+                // Show iframe and hide password prompt
+                iframe.style.display = 'block';
+                passwordContainer.style.display = 'none';
+            } else {
+                alert('Incorrect password!');
+            }
         }
 
-        // Set up an interval to refresh the iframe every 30 seconds
         window.onload = function () {
-            setInterval(refreshIframe, 30000); // Refresh every 30 seconds
+            const iframe = document.getElementById('content-iframe');
+            iframe.style.display = 'none'; // Ensure iframe is hidden initially
         };
     </script>
 </head>
 <body>
     <h1>Test Coordination Dashboard</h1>
+
+    <!-- Password Prompt -->
+    <div id="password-container">
+        <p>Enter password to access the dashboard:</p>
+        <input type="password" id="password-input" />
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <!-- Iframe content (hidden initially) -->
     <iframe 
         id="content-iframe"
         src="https://docs.google.com/presentation/d/e/2PACX-1vTPwPLkmIZOmQRIQxDgMJrTAShOXEtpmbCdvnln8fT9ocNNx_EmIPuULYbe-8277gt2s9OE6rMSHpb8/embed?start=false&loop=false&delayms=3000" 
